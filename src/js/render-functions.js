@@ -1,7 +1,6 @@
 const gallery = document.querySelector('.gallery');
 
 export function renderGallery(images) {
-
     const markup = images.map(({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) => `
         <li class="gallery-item">
             <a href="${largeImageURL}">
