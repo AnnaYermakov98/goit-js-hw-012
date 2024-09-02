@@ -60,6 +60,7 @@ async function getPhotos() {
     }
 
     renderGallery(data.hits);
+    lightBox.refresh();
     loadMoreBtn.style.display = 'block';
 
 
