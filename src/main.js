@@ -39,7 +39,9 @@ async function submitHandler(e) {
       return;
     }
     clearGallery();
+    e.target.elements.searchField.value = '';
     currentPage = 1;
+    loader.style.display = 'block';
     await getPhotos();
   }
 

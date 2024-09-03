@@ -25,11 +25,13 @@
 }
 
 .btn{
+    display: block;
     border-radius: 8px;
     padding: 8px 16px;
-    background: #4e75ff;
+    background-color: #4e75ff;
     border: none;
 color: #fff;
+transition: background-color 250ms ease-in-out;
 }
 
 .gallery {
@@ -38,6 +40,7 @@ color: #fff;
     align-items: center;
     flex-wrap: wrap;
     gap: 24px;
+    margin-bottom: 36px;
 }
 
 .gallery-item {
@@ -106,11 +109,41 @@ color: #fff;
 margin: 30px;
 }
 
-/* .loader {
+.loader {
     width: 48px;
     height: 48px;
-    display: inline-block;
+    border-radius: 50%;
+    display: none;
+    margin:15px auto;
     position: relative;
-  } */
-
+    box-sizing: border-box;
+    animation: zeroRotation 1s linear infinite alternate;
+  }
+  .loader::after,
+  .loader::before {
+    content: '';  
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #4e75ff;
+    width: 16px;
+    height: 16px;
+    transform: translate(-50%, 50%);
+    border-radius: 50%;
+  }
+  .loader::before {
+    left: auto;
+    right: 0;
+    transform: translate(50%, 100%);
+  }
   
+  @keyframes zeroRotation {
+    0% {
+      transform: scale(1) rotate(0deg);
+    }
+    100% {
+      transform: scale(0) rotate(360deg);
+    }
+  }
+
