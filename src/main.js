@@ -9,6 +9,7 @@ import {renderGallery} from './js/render-functions';
 const gallery = document.querySelector('.gallery');
 const form = document.querySelector('.form');
 const loadMoreBtn = document.querySelector('.load-more');
+const loader = document.querySelector('.loader');
 form.addEventListener('submit', submitHandler);
 loadMoreBtn.addEventListener('click', loadMorePhotos);
 
@@ -33,6 +34,8 @@ async function submitHandler(e) {
           'Sorry, you have to type something in the search field. Please try again!',
         position: 'topRight',
       });
+      clearGallery();
+      loadMoreBtn.style.display = 'none';
       return;
     }
     clearGallery();
@@ -47,6 +50,7 @@ async function loadMorePhotos() {
 
 async function getPhotos() {
   try {
+    loader.style.display = 'block';
     const data = await fetchPhotos(currentQuery, currentPage);
     totalHits = data.totalHits;
 
@@ -56,6 +60,7 @@ async function getPhotos() {
         message: 'Sorry, there are no images matching your search query. Please try again!',
         position: 'topRight',
     });
+    loadMoreBtn.style.display = 'none'; 
     return;
     }
 
@@ -80,6 +85,8 @@ iziToast.warning({
     });
 } catch (error) {
     handleError(error);
+} finally {
+  loader.style.display = 'none';
 }
   }
 
